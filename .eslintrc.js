@@ -10,6 +10,9 @@ module.exports = {
     ecmaVersion: 11,
   },
   rules: {
+    // Don't enforce control flow closing curly brace needs to be
+    // on same line as next control flow opening statement
+    'brace-style': 'off',
     // Don't enforce ===
     eqeqeq: 'off',
     // Disable func-names rule so that we can have anonymous functions
@@ -27,6 +30,8 @@ module.exports = {
     'no-var': 'off',
     // Don't require a += b instead of a = a + b
     'operator-assignment': 'off',
+    // Don't require array and object destructuring for variable assignment
+    'prefer-destructuring': 'off',
     // Enable + sign to concatenate strings
     'prefer-template': 'off',
     // Disable radix requirement for functions like parseInt
