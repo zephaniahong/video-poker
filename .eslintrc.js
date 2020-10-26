@@ -5,6 +5,8 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'prettier',
+    'prettier/react',
   ],
   parserOptions: {
     ecmaVersion: 11,
