@@ -1,0 +1,83 @@
+h1 {
+  border: 2px solid green;
+  text-align: center;
+}
+
+.playingArea {
+  margin: 0 auto;
+  height: 800px;
+  border: 5px solid black;
+  background-color: blanchedalmond;
+}
+
+.scoreBoardContainer {
+  width: 100%;
+  display: table;
+}
+.scoreBoard {
+  display: table-cell;
+  vertical-align: top;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.score {
+  padding-top: 15px;
+  text-align: right;
+  padding-right: 5px;
+  width: 170px;
+}
+
+.hand {
+  width: 350px;
+}
+
+.playingCards {
+  height: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card {
+  font-size: 30px;
+  width: 200px;
+  height: 300px;
+  display: inline-block;
+  margin: 15px;
+}
+
+.card:hover {
+  opacity: 0.7;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button {
+  display: flex;
+  margin: 0 auto;
+}
+
+.hold {
+  margin-top: 20px;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.holdSign {
+  width: 200px;
+  height: 50px;
+  margin: 5px;
+  background-color: lightgray;
+  text-align: center;
+}
