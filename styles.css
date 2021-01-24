@@ -1,30 +1,68 @@
+* {
+  margin: 0%;
+}
+@font-face {
+  font-family: "Poker-In-October-Demo";
+  src: url("Poker-In-October-Demo.ttf.woff") format("woff"),
+    url("Poker-In-October-Demo.ttf.svg#Poker-In-October-Demo") format("svg"),
+    url("Poker-In-October-Demo.ttf.eot"),
+    url("Poker-In-October-Demo.ttf.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: white;
+  background-color: darkgreen;
+}
 h1 {
-  border: 2px solid green;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-family: "Poker-In-October-Demo";
   text-align: center;
+  color: #fdd20eff;
+  -webkit-text-stroke: #f93822ff 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+h1 img {
+  width: 80px;
+  padding-left: 15px;
 }
 
 .playingArea {
   margin: 0 auto;
-  height: 800px;
-  border: 5px solid black;
-  background-color: blanchedalmond;
+  height: 670px;
+  border: 15px solid rgb(182, 169, 68);
+  border-radius: 5%;
+  background-image: url("https://static6.depositphotos.com/1107771/647/v/600/depositphotos_6476634-stock-illustration-red-poker-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.scoreBoardContainer {
-  width: 100%;
-  display: table;
+.scoreBoardContainer :first-child {
+  width: 200px;
 }
+.scoreBoardContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 20px;
+  margin: 0px auto;
+}
+
 .scoreBoard {
   display: table-cell;
   vertical-align: top;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
-  height: 200px;
+  /* border: 2px solid black; */
   box-sizing: border-box;
 }
 
 ul {
   list-style-type: none;
+  padding-left: 30px;
 }
 
 .score {
@@ -35,22 +73,40 @@ ul {
 }
 
 .hand {
-  width: 350px;
+  width: 400px;
+  padding-top: 15px;
+  /* text-align: right; */
+  padding-right: 5px;
+  padding-left: 20px;
+  width: 170px;
 }
 
 .playingCards {
-  height: 300px;
+  height: 230px;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
 }
 
 .card {
-  font-size: 30px;
-  width: 200px;
-  height: 300px;
+  height: 200px;
   display: inline-block;
-  margin: 15px;
+  margin: 5px;
+  animation: deal 2s;
+}
+
+@keyframes deal {
+  from {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 50%;
+  }
+
+  to {
+    opacity: 100%;
+  }
 }
 
 .card:hover {
@@ -62,22 +118,44 @@ img {
   max-height: 100%;
 }
 
+.buttonHolder {
+  text-align: center;
+}
+
 button {
-  display: flex;
-  margin: 0 auto;
+  margin: 5px;
 }
 
 .hold {
   margin-top: 20px;
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: space-evenly;
 }
 
 .holdSign {
   width: 200px;
-  height: 50px;
+  height: 20px;
   margin: 5px;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   text-align: center;
+}
+
+.gameBanner {
+  width: 80%;
+  height: 40px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 25px;
+}
+
+.points {
+  font-size: 50px;
+  padding: 10px;
+  position: relative;
+  bottom: 0;
+}
+
+.score:hover {
+  background-color: rgba(227, 68, 68, 0.7);
 }
