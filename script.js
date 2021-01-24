@@ -14,7 +14,11 @@ const reset = document.createElement('button');
 const buttonHolder = document.createElement('div');
 const hold = document.createElement('div');
 const points = document.createElement('div');
+const lightContainer = document.createElement('div');
+const lightContainer2 = document.createElement('div');
 
+lightContainer.classList.add('lightContainer');
+lightContainer2.classList.add('lightContainer');
 playingArea.classList.add('playingArea');
 hold.classList.add('hold');
 subPlayingArea.classList.add('subPlayingArea');
@@ -31,6 +35,7 @@ reset.innerText = 'Reset';
 points.innerText = 100;
 gameBanner.innerText = 'Select a scoring system!';
 
+document.body.appendChild(lightContainer);
 document.body.appendChild(playingArea);
 scoreBoardContainer.appendChild(scoreBoardHand);
 playingArea.appendChild(scoreBoardContainer);
@@ -42,7 +47,17 @@ subPlayingArea.appendChild(buttonHolder);
 buttonHolder.appendChild(button);
 buttonHolder.appendChild(reset);
 subPlayingArea.appendChild(points);
-
+document.body.appendChild(lightContainer2);
+for (let i = 0; i < 80; i += 1) {
+  const light = document.createElement('div');
+  light.classList.add('led-yellow', 'testing');
+  lightContainer.appendChild(light);
+}
+// for (let i = 0; i < 80; i += 1) {
+//   const light = document.createElement('div');
+//   light.classList.add('led-yellow', 'testing');
+//   lightContainer2.appendChild(light);
+// }
 // Globals
 const cardShuffle = document.getElementById('cardShuffle');
 let deal = 'preGame';
@@ -317,6 +332,19 @@ const calcHandScore = (cardArray) => {
   return scoreHand;
 };
 
+// function to play the sound of dealing cards
+const dealCardSound = (num) => {
+  let counter = 0;
+  const ref = setInterval(() => {
+    cardDealOne.play();
+    counter += 1;
+
+    if (counter === num) {
+      clearInterval(ref);
+    }
+  }, 700);
+};
+
 // function to deal out 5 cards
 const dealCards = () => {
   if (deal === 'preGame') {
@@ -338,13 +366,15 @@ const dealCards = () => {
     cardShuffle.play();
     setTimeout(() => {
       for (let i = 0; i < 5; i += 1) {
-      // create hold signs on top of each card
+        dealCardSound(5);
+        // create hold signs on top of each card
         const holdSign = document.createElement('div');
         holdSign.classList.add('holdSign');
         hold.appendChild(holdSign);
         const newCard = shuffledDeck.pop();
         cardArray.push(newCard);
         card = createCardElement(newCard);
+        card.classList.add(`card${i + 1}`);
         // adding an event listener for each card to allow the user to hold the card
         card.addEventListener('click', () => {
           if (holdSign.innerText === '') {
@@ -356,42 +386,57 @@ const dealCards = () => {
           }
         });
       }
-      canClick = true;
       deal = 'second';
+    }, 1500);
+    setTimeout(() => {
       const handType = calcHandScore(cardArray)[1];
       gameBanner.innerText = handType;
-    }, 1500);
+      canClick = true;
+    }, 5800);
   }
   // dealing cards after player chooses to hold certain cards
-  else if (deal === 'second' && canClick === true) {
+  if (deal === 'second' && canClick === true) {
     canClick = false;
     playingCards.innerText = '';
-    let new2Card;
+    let newCard;
     hold.innerText = '';
+    let isNewCard = false;
+    let cardNum = 1;
     for (let j = 0; j < newArray.length; j += 1) {
       if (newArray[j] === '') {
-        new2Card = shuffledDeck.pop();
-        newArray[j] = new2Card;
+        isNewCard = true;
+        newCard = shuffledDeck.pop();
+        newArray[j] = newCard;
       }
       // create card element
-      createCardElement(newArray[j]);
+      const card = createCardElement(newArray[j]);
+      // adding a class only if it's a new card being dealt
+      if (isNewCard) {
+        card.classList.add(`card${cardNum}`);
+        isNewCard = false;
+        cardNum += 1;
+      }
     }
+    dealCardSound(cardNum - 1);
     const pointsWon = calcHandScore(newArray)[0];
     const hand = calcHandScore(newArray)[1];
-    if (hand === 'Nothing') {
-      losingSound.play();
-    } else {
-      win.play();
-    }
-    amtLeft += pointsWon;
-    points.innerText = amtLeft;
-    gameBanner.innerHTML = `${hand} <br> You won ${pointsWon} points! <br> Click deal cards to play again!`;
-    deal = 'first';
+    setTimeout(() => {
+      if (hand === 'Nothing') {
+        losingSound.play();
+      } else {
+        win.play();
+      }
+      amtLeft += pointsWon;
+      points.innerText = amtLeft;
+      gameBanner.innerHTML = `${hand} <br> You won ${pointsWon} points! <br> Click deal cards to play again!`;
+      deal = 'first';
+    }, (cardNum - 1) * 1000);
+
     setTimeout(() => {
       playingCards.innerText = '';
       gameBanner.innerText = 'Click deal cards to play again!';
       canClick = true;
-    }, 3000);
+    }, (cardNum - 1) * 1000 + 4000);
   }
 };
 

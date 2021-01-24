@@ -92,20 +92,37 @@ ul {
   height: 200px;
   display: inline-block;
   margin: 5px;
-  animation: deal 2s;
+}
+
+.card1 {
+  animation: deal 1.4s;
+}
+
+.card2 {
+  animation: deal 2.8s;
+}
+
+.card3 {
+  animation: deal 4.2s;
+}
+
+.card4 {
+  animation: deal 5.6s;
+}
+
+.card5 {
+  animation: deal 7s;
 }
 
 @keyframes deal {
   from {
-    opacity: 0%;
+    visibility: hidden;
   }
-
   50% {
-    opacity: 50%;
+    visibility: hidden;
   }
-
   to {
-    opacity: 100%;
+    visibility: visible;
   }
 }
 
@@ -158,4 +175,37 @@ button {
 
 .score:hover {
   background-color: rgba(227, 68, 68, 0.7);
+}
+
+.lightContainer {
+  white-space: nowrap;
+}
+
+.lightContainer {
+  white-space: nowrap;
+}
+.led-yellow {
+  display: inline-block;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #ff0;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+    #ff0 0 2px 12px;
+  animation: blinkYellow 1s infinite;
+}
+
+@keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: rgb(207, 207, 40);
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      #ff0 0 2px 0; */
+  }
+  to {
+    background-color: #ff0;
+  }
 }
