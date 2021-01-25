@@ -34,7 +34,8 @@ h1 img {
 
 .playingArea {
   margin: 0 auto;
-  height: 650px;
+  height: 680px;
+  margin-top: 5px;
   border: 15px solid rgb(182, 169, 68);
   border-radius: 5%;
   background-image: url("https://static6.depositphotos.com/1107771/647/v/600/depositphotos_6476634-stock-illustration-red-poker-background.jpg");
@@ -95,6 +96,8 @@ ul {
   height: 75%;
   display: inline-block;
   margin: 5px;
+  color: black;
+  position: relative;
 }
 
 .card1 {
@@ -146,24 +149,21 @@ button {
   margin: 5px;
 }
 
-.hold {
-  margin-top: 5px;
-  height: 20px;
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .holdSign {
-  width: 200px;
+  /* width: 200px;
   height: 20px;
   margin: 5px;
   /* background-color: lightgray; */
-  text-align: center;
+  /* text-align: center; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .gameBanner {
   width: 80%;
-  height: 40px;
+  height: 90px;
   margin: 0 auto;
   text-align: center;
   font-size: 25px;
@@ -217,6 +217,9 @@ button {
   .scoreBoard {
     font-size: 70%;
     white-space: nowrap;
+  }
+  .gameBanner {
+    font-size: 80%;
   }
 
   .card {

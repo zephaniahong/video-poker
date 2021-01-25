@@ -36,7 +36,7 @@ scoreBoardContainer.appendChild(scoreBoardHand);
 playingArea.appendChild(scoreBoardContainer);
 playingArea.appendChild(subPlayingArea);
 subPlayingArea.appendChild(gameBanner);
-subPlayingArea.appendChild(hold);
+// subPlayingArea.appendChild(hold);
 subPlayingArea.appendChild(playingCards);
 subPlayingArea.appendChild(buttonHolder);
 buttonHolder.appendChild(button);
@@ -317,6 +317,18 @@ const calcHandScore = (cardArray) => {
   return scoreHand;
 };
 
+// function to reset the game
+const resetGame = () => {
+  globalScoreList = [];
+  amtLeft = 100;
+  points.innerText = amtLeft;
+  playingCards.innerText = '';
+  hold.innerText = '';
+  canClick = true;
+  gameBanner.innerText = 'Select a scoring system!';
+  deal = 'preGame';
+};
+
 // function to play the sound of dealing cards
 const dealCardSound = (num) => {
   let counter = 0;
@@ -330,6 +342,23 @@ const dealCardSound = (num) => {
   }, 700);
 };
 
+// plays the winning/losing sound
+const gameEndSound = (playerHand) => {
+  if (playerHand === 'Nothing') {
+    losingSound.play();
+  } else {
+    win.play();
+  }
+};
+
+// stops all audio from playing
+const pauseAudio = () => {
+  const sounds = document.getElementsByTagName('audio');
+  for (let i = 0; i < sounds.length; i += 1) {
+    sounds[i].pause();
+  }
+};
+
 // function to deal out 5 cards
 const dealCards = () => {
   if (deal === 'preGame') {
@@ -339,6 +368,7 @@ const dealCards = () => {
   const betAmt = globalScoreList[0];
   if (deal === 'first' && canClick === true) {
     canClick = false;
+    deal = 'second';
     playingCards.innerText = '';
     newArray = ['', '', '', '', ''];
     shuffledDeck = shuffleCards(makeDeck());
@@ -355,11 +385,11 @@ const dealCards = () => {
         // create hold signs on top of each card
         const holdSign = document.createElement('div');
         holdSign.classList.add('holdSign');
-        hold.appendChild(holdSign);
         const newCard = shuffledDeck.pop();
         cardArray.push(newCard);
         card = createCardElement(newCard);
         card.classList.add(`card${i + 1}`);
+        card.appendChild(holdSign);
         // adding an event listener for each card to allow the user to hold the card
         card.addEventListener('click', () => {
           if (holdSign.innerText === '') {
@@ -371,8 +401,7 @@ const dealCards = () => {
           }
         });
       }
-      deal = 'second';
-    }, 1500);
+    }, 1000);
     setTimeout(() => {
       const handType = calcHandScore(cardArray)[1];
       gameBanner.innerText = handType;
@@ -406,11 +435,7 @@ const dealCards = () => {
     const pointsWon = calcHandScore(newArray)[0];
     const hand = calcHandScore(newArray)[1];
     setTimeout(() => {
-      if (hand === 'Nothing') {
-        losingSound.play();
-      } else {
-        win.play();
-      }
+      gameEndSound(hand);
       amtLeft += pointsWon;
       points.innerText = amtLeft;
       gameBanner.innerHTML = `${hand} <br> You won ${pointsWon} points! <br> Click deal cards to play again!`;
@@ -428,12 +453,6 @@ const dealCards = () => {
 createScoreBoard();
 button.addEventListener('click', dealCards);
 reset.addEventListener('click', () => {
-  globalScoreList = [];
-  amtLeft = 100;
-  points.innerText = amtLeft;
-  playingCards.innerText = '';
-  hold.innerText = '';
-  canClick = true;
-  gameBanner.innerText = 'Select a scoring system!';
-  deal = 'preGame';
+  resetGame();
+  pauseAudio();
 });
