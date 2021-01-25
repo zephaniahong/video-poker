@@ -34,7 +34,7 @@ h1 img {
 
 .playingArea {
   margin: 0 auto;
-  height: 670px;
+  height: 650px;
   border: 15px solid rgb(182, 169, 68);
   border-radius: 5%;
   background-image: url("https://static6.depositphotos.com/1107771/647/v/600/depositphotos_6476634-stock-illustration-red-poker-background.jpg");
@@ -58,6 +58,7 @@ h1 img {
   vertical-align: top;
   /* border: 2px solid black; */
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 ul {
@@ -83,13 +84,15 @@ ul {
 
 .playingCards {
   height: 230px;
+  flex-wrap: wrap;
   text-align: center;
   display: flex;
   justify-content: space-evenly;
+  overflow-wrap: break-word;
 }
 
 .card {
-  height: 200px;
+  height: 75%;
   display: inline-block;
   margin: 5px;
 }
@@ -144,8 +147,8 @@ button {
 }
 
 .hold {
-  margin-top: 20px;
-  height: 30px;
+  margin-top: 5px;
+  height: 20px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -207,5 +210,16 @@ button {
   }
   to {
     background-color: #ff0;
+  }
+}
+
+@media (max-width: 425px) {
+  .scoreBoard {
+    font-size: 70%;
+    white-space: nowrap;
+  }
+
+  .card {
+    height: 45%;
   }
 }

@@ -14,11 +14,7 @@ const reset = document.createElement('button');
 const buttonHolder = document.createElement('div');
 const hold = document.createElement('div');
 const points = document.createElement('div');
-const lightContainer = document.createElement('div');
-const lightContainer2 = document.createElement('div');
 
-lightContainer.classList.add('lightContainer');
-lightContainer2.classList.add('lightContainer');
 playingArea.classList.add('playingArea');
 hold.classList.add('hold');
 subPlayingArea.classList.add('subPlayingArea');
@@ -35,7 +31,6 @@ reset.innerText = 'Reset';
 points.innerText = 100;
 gameBanner.innerText = 'Select a scoring system!';
 
-document.body.appendChild(lightContainer);
 document.body.appendChild(playingArea);
 scoreBoardContainer.appendChild(scoreBoardHand);
 playingArea.appendChild(scoreBoardContainer);
@@ -47,17 +42,7 @@ subPlayingArea.appendChild(buttonHolder);
 buttonHolder.appendChild(button);
 buttonHolder.appendChild(reset);
 subPlayingArea.appendChild(points);
-document.body.appendChild(lightContainer2);
-for (let i = 0; i < 80; i += 1) {
-  const light = document.createElement('div');
-  light.classList.add('led-yellow', 'testing');
-  lightContainer.appendChild(light);
-}
-// for (let i = 0; i < 80; i += 1) {
-//   const light = document.createElement('div');
-//   light.classList.add('led-yellow', 'testing');
-//   lightContainer2.appendChild(light);
-// }
+
 // Globals
 const cardShuffle = document.getElementById('cardShuffle');
 let deal = 'preGame';
