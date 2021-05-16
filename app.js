@@ -1,14 +1,18 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const path = require('path');
 
-const PORT = 3000;
+const app = express();
+const port = 3000;
 
-fs.readFile('./home.html', (err, html) => {
-  if (err) throw err;
+// load statuc files in the public directory
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-  http.createServer((request, response) => {
-    response.writeHeader(200, { 'Content-Type': 'text/html' });
-    response.write(html);
-    response.end();
-  }).listen(PORT);
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
