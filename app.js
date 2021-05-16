@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3004;
 
 // load statuc files in the public directory
 app.use(express.static('public'));
@@ -14,5 +14,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
