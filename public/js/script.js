@@ -59,7 +59,7 @@ const imgholder = [];
 for (let i = 0; i < 13; i += 1) {
   imgholder.push([]);
   for (let j = 0; j < 4; j += 1) {
-    imgholder[i].push(`../images/${nums[i]}of${suitsholder[j]}.jpg`);
+    imgholder[i].push(`../images/${nums[i]}Of${suitsholder[j]}.jpg`);
   }
 }
 
